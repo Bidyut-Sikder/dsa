@@ -1,4 +1,4 @@
-#1 Write a function that counts string unique charectar
+## 1 Write a function that counts string unique charectar
 
 ## Usage
 
@@ -45,7 +45,7 @@ objectMethod("Bidy5utt22###tt5ttuuu");
 //result={ '2': 2, '5': 2, b: 1, i: 1, d: 1, y: 1, u: 4, t: 6 }
 ```
 
-#2 write a function that takes in two arrs and the second arr contains 1st elements sqare;
+## 2 write a function that takes in two arrs and the second arr contains 1st elements sqare;
 return the first arr with the second arr elements in the same order
 
 ## Usage
@@ -67,17 +67,7 @@ function same(arr1, arr2) {
   return true;
 }
 
-const dd = same([1, 2, 3], [9, 9, 1]);
 
-//console.log(dd);
-
-// const food = ['pizza', 'cake', 'salad', 'cookie'];
-
-// const sp=food.splice(2,1)
-// const s= food.slice(1)
-
-// console.log(s)
-// console.log(food)
 
 /////////////////////// different approach
 
@@ -117,7 +107,7 @@ function same2(arr1, arr2) {
 //forof is ideal for arrys
 ```
 
-#3 anagram solutions/it means it takes two strings both contain same charactars.
+## 3 anagram solutions/it means it takes two strings both contain same charactars.
 
 ## Usage
 
@@ -153,7 +143,7 @@ function anaGram(str1, str2) {
 // console.log(anaGram("bidyutt", "yuttbid"))
 ```
 
-#4 write a function that takes a sorted array and (-3,3) returns 0
+## 4 write a function that takes a sorted array and (-3,3) returns 0
 
 ## Usage
 
@@ -190,7 +180,7 @@ function multiplePointers(arr) {
 // console.log(multiplePointers([-4, -3, -2, -1, 0, 1, 2, 3, 4]));
 ```
 
-#5 count unique values from a sorted array
+## 5 count unique values from a sorted array
 
 ## Usage
 
@@ -213,7 +203,7 @@ function countUniqueValues(arr) {
 // countUniqueValues([1, 2, 3, 3, 4, 5, 5, 6, 6]);
 ```
 
-#6 Sliding window Pattern
+## 6 Sliding window Pattern
 
 a function that takes an array and a number called n and returns the
 calculated maximum sum of
@@ -241,7 +231,7 @@ function maxSubarraySum(arr, num) {
 //maxSubarraySum([1, 2, 5, 2, 8, 1, 5], 2);
 ```
 
-#7 Divide and conquer pattern////
+## 7 Divide and conquer pattern////
 a function takes in a sorted array and a number and returns
 the index where the value passed to the function is located;if the
 value is not found,returns -1
@@ -284,7 +274,7 @@ function indexCalculator(arr, val) {
 console.log(indexCalculator([1, 2, 3, 4, 5, 5, 6, 7, 8], 6));
 ```
 
-#8 a function takes two same length strings and returns true if the two strings contain same chartars
+## 8 a function takes two same length strings and returns true if the two strings contain same chartars
 
 ## Usage
 
@@ -339,7 +329,7 @@ function sameFrequency(num1, num2) {
 console.log(sameFrequency("bbc", "cbb")); //true
 ```
 
-#9 Checking duplicate values in an object
+## 9 Checking duplicate values in an object
 
 ## Usage
 
@@ -369,7 +359,7 @@ console.log(
 );
 ```
 
-#10 Implement a function called, areThereDuplicates which accepts
+## 10 Implement a function called, areThereDuplicates which accepts
 a variable number of arguments, and checks whether there are any
 duplicates among the arguments passed in.
 
@@ -404,7 +394,7 @@ function areThereDuplicates(...args) {
 console.log(areThereDuplicates("arno", "bidyut", "tonmoy", "arno")); // true
 ```
 
-#11 Given a sorted array of integers and a target average,
+## 11 Given a sorted array of integers and a target average,
 determine if there is a pair of values in the array where
 the average of the pair equals the target average. There may be more
 than one pair that matches the average target.
@@ -435,7 +425,7 @@ function averagePair(arr, aver) {
 //console.log(averagePair([1, 3, 3, 5, 6, 7, 10, 12, 13, 19], 9));
 ```
 
-#12 Write a function called isSubsequence which takes
+## 12 Write a function called isSubsequence which takes
 in two strings and checks whether the characters in
 the first string form a subsequence of the characters in the
 second string. In other words, the function should check whether
@@ -466,7 +456,7 @@ function isSubsequence(str1, str2) {
 // console.log(isSubsequence('abc', 'ahbgdc')); //true
 ```
 
-#13 Write a function called minSubArrayLen which accepts two parameters - an array of positive integers and a positive integer.
+## 13 Write a function called minSubArrayLen which accepts two parameters - an array of positive integers and a positive integer.
 
 This function should return the minimal length of
 a contiguous subarray of which the sum is greater than
@@ -502,7 +492,7 @@ function minSubArrayLen(arr, sum) {
 //console.log(minSubArrayLen([2, 3, 2, 2, 3], 6));
 ```
 
-#14  Write a function called findLongestSubstring,
+##14  Write a function called findLongestSubstring,
   which accepts a string and returns the length of the longest
  substring with all distinct characters.
 
