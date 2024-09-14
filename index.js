@@ -1,24 +1,15 @@
+let arr = [9, 3, 12, 5, 4, 22, 7];
 
-///selectin sort
-
-function selectionSort(arr) {
-  for (let i = 0; i < arr.length; i++) {
-    let minIndex = i;
-    for (let j = i + 1; j < arr.length; j++) {
-      if (arr[i] > arr[j]) minIndex = j;
+function insertionSort(array) {
+  for (let i = 1; i < array.length; i++) {
+    let currentValue = array[i];
+    for (var j = i - 1; j >= 0 && array[j] > currentValue; j--) {
+      array[j + 1] = array[j];
     }
-
-    if (i !== minIndex) {
-      let temp = arr[i];
-      arr[i] = arr[minIndex];
-      arr[minIndex] = temp;
-    }
+    array[j + 1] = currentValue;
   }
 
-  return arr;
+  return array;
 }
 
-console.log(selectionSort(arr));
-
-
-//1,2,3,4,5,6
+console.log(insertionSort(arr));

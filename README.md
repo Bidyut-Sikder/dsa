@@ -492,7 +492,7 @@ function minSubArrayLen(arr, sum) {
 //console.log(minSubArrayLen([2, 3, 2, 2, 3], 6));
 ```
 
-##14  Write a function called findLongestSubstring,
+## 14  Write a function called findLongestSubstring,
   which accepts a string and returns the length of the longest
  substring with all distinct characters.
 
@@ -516,7 +516,7 @@ function findLongestSubstring(str) {
 
 //console.log(findLongestSubstring("thecatinthehat"));
 ```
-##15  BubbleSort algorithm
+## 15  BubbleSort algorithm
 
 ## Usage
 ```js
@@ -542,7 +542,7 @@ const arr = [10, 4, 6, 7, 9, 64, 4];
 //console.log(bubbleSort(arr)); // [ 4, 4, 6, 7,
 
 ```
-##15  Selection Sort algorithm
+## 15  Selection Sort algorithm
 
 ## Usage
 ```js
@@ -566,4 +566,25 @@ const arr = [10, 4, 6, 7, 9, 64, 4];
 console.log(selectionSort(arr));
 
 //console.log(findLongestSubstring("thecatinthehat"));
+```
+
+## 16  Insertion Sort algorithm
+
+## Usage
+```js
+let arr = [9, 3, 12, 5, 4, 22, 7];
+
+function insertionSort(array) {
+  for (let i = 1; i < array.length; i++) {
+    let currentValue = array[i];
+    for (var j = i - 1; j >= 0 && array[j] > currentValue; j--) {
+      array[j + 1] = array[j];
+    }
+    array[j + 1] = currentValue;
+  }
+
+  return array;
+}
+
+console.log(insertionSort(arr));
 ```
