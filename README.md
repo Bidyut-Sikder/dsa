@@ -516,7 +516,9 @@ function findLongestSubstring(str) {
 
 //console.log(findLongestSubstring("thecatinthehat"));
 ```
+##15  BubbleSort algorithm
 
+## Usage
 ```js
 function bubbleSort(arr) {
   let noSowp;
@@ -540,23 +542,27 @@ const arr = [10, 4, 6, 7, 9, 64, 4];
 //console.log(bubbleSort(arr)); // [ 4, 4, 6, 7,
 
 ```
-
+##15  Selection Sort algorithm
 
 ```js
-function findLongestSubstring(str) {
-  let longest = 0;
-  let start = 0;
-  let keep = {};
-  for (let i = 0; i < str.length; i++) {
-    if (keep[str[i]]) {
-      start = Math.max(start, keep[str[i]]);
+function selectionSort(arr) {
+  for (let i = 0; i < arr.length; i++) {
+    let minIndex = i;
+    for (let j = i + 1; j < arr.length; j++) {
+      if (arr[i] > arr[j]) minIndex = j;
     }
-    longest = Math.max(longest, i + 1 - start);
 
-    keep[str[i]] = i + 1;
+    if (i !== minIndex) {
+      let temp = arr[i];
+      arr[i] = arr[minIndex];
+      arr[minIndex] = temp;
+    }
   }
-  return longest;
+
+  return arr;
 }
+const arr = [10, 4, 6, 7, 9, 64, 4];
+console.log(selectionSort(arr));
 
 //console.log(findLongestSubstring("thecatinthehat"));
 ```
