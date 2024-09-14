@@ -517,4 +517,46 @@ function findLongestSubstring(str) {
 //console.log(findLongestSubstring("thecatinthehat"));
 ```
 
+```js
+function bubbleSort(arr) {
+  let noSowp;
+  for (let i = arr.length; i > 0; i--) {
+    noSowp = true;
+    for (let j = 0; j < i - 1; j++) {
+      if (arr[j] > arr[j + 1]) {
+        let temp = arr[j];
+        arr[j] = arr[j + 1];
+        arr[j + 1] = temp;
+        noSowp = false;
+      }
+    }
+    if (noSowp) break;
+  }
+  return arr;
+}
 
+const arr = [10, 4, 6, 7, 9, 64, 4];
+
+//console.log(bubbleSort(arr)); // [ 4, 4, 6, 7,
+
+```
+
+
+```js
+function findLongestSubstring(str) {
+  let longest = 0;
+  let start = 0;
+  let keep = {};
+  for (let i = 0; i < str.length; i++) {
+    if (keep[str[i]]) {
+      start = Math.max(start, keep[str[i]]);
+    }
+    longest = Math.max(longest, i + 1 - start);
+
+    keep[str[i]] = i + 1;
+  }
+  return longest;
+}
+
+//console.log(findLongestSubstring("thecatinthehat"));
+```
