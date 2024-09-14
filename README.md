@@ -544,6 +544,7 @@ const arr = [10, 4, 6, 7, 9, 64, 4];
 ```
 ##15  Selection Sort algorithm
 
+## Usage
 ```js
 function selectionSort(arr) {
   for (let i = 0; i < arr.length; i++) {
