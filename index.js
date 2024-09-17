@@ -1,38 +1,36 @@
-function merge(arr1, arr2) {
-  let result = [];
-  let arr1Index = 0;
-  let arr2Index = 0;
+function pivot(arr, start, end) {
+  function swap(arr, i, j) {
+    let temp = arr[i];
+    arr[i] = arr[j];
+    arr[j] = temp;
+  }
 
-  while (arr1.length > arr1Index && arr2.length > arr2Index) {
-    if (arr1[arr1Index] < arr2[arr2Index]) {
-      result.push(arr1[arr1Index]);
-      arr1Index++;
-    } else {
-      result.push(arr2[arr2Index]);
-      arr2Index++;
+  let pivot = arr[start];
+  let startIndex = start;
+
+  for (let i = start + 1; i < arr.length; i++) {
+    if (pivot > arr[i]) {
+      startIndex++;
+      swap(arr, startIndex, i);
     }
   }
 
-  while (arr1.length > arr1Index) {
-    result.push(arr1[arr1Index]);
-    arr1Index++;
-  }
-  while (arr2.length > arr2Index) {
-    result.push(arr2[arr2Index]);
-    arr2Index++;
+  swap(arr, start, startIndex);
+
+  return startIndex;
+}
+//console.log(pivot([4, 8, 2, 1, 5, 7, 6, 3, 434, 23, 32, 3]));
+
+function quickSort(arr, left = 0, right = arr.length - 1) {
+  if (left > right) {
+    return arr;
   }
 
-  return result;
+  let pivotIndex = pivot(arr, left);
+  quickSort(arr, left, pivotIndex - 1);
+  quickSort(arr, pivotIndex + 1, right);
+
+  return arr;
 }
 
-function mergeSort(arr) {
-  if (arr.length <= 1) return arr;
-
-  let middle = Math.floor(arr.length / 2);
-  let leftSide = mergeSort(arr.slice(0, middle));
-  let rightSide = mergeSort(arr.slice(middle));
-
-  return merge(leftSide, rightSide);
-}
-
-console.log(mergeSort([3, 2, 3, 3, 242, 54, 343, 43, 55]));
+//console.log(quickSort([4, 8, 2, 1, 5, 7, 6, 3, 434, 23, 32, 3]));
