@@ -46,6 +46,7 @@ objectMethod("Bidy5utt22###tt5ttuuu");
 ```
 
 ## 2 write a function that takes in two arrs and the second arr contains 1st elements sqare;
+
 return the first arr with the second arr elements in the same order
 
 ## Usage
@@ -66,8 +67,6 @@ function same(arr1, arr2) {
   }
   return true;
 }
-
-
 
 /////////////////////// different approach
 
@@ -232,6 +231,7 @@ function maxSubarraySum(arr, num) {
 ```
 
 ## 7 Divide and conquer pattern////
+
 a function takes in a sorted array and a number and returns
 the index where the value passed to the function is located;if the
 value is not found,returns -1
@@ -360,6 +360,7 @@ console.log(
 ```
 
 ## 10 Implement a function called, areThereDuplicates which accepts
+
 a variable number of arguments, and checks whether there are any
 duplicates among the arguments passed in.
 
@@ -395,6 +396,7 @@ console.log(areThereDuplicates("arno", "bidyut", "tonmoy", "arno")); // true
 ```
 
 ## 11 Given a sorted array of integers and a target average,
+
 determine if there is a pair of values in the array where
 the average of the pair equals the target average. There may be more
 than one pair that matches the average target.
@@ -426,6 +428,7 @@ function averagePair(arr, aver) {
 ```
 
 ## 12 Write a function called isSubsequence which takes
+
 in two strings and checks whether the characters in
 the first string form a subsequence of the characters in the
 second string. In other words, the function should check whether
@@ -492,9 +495,10 @@ function minSubArrayLen(arr, sum) {
 //console.log(minSubArrayLen([2, 3, 2, 2, 3], 6));
 ```
 
-## 14  Write a function called findLongestSubstring,
-  which accepts a string and returns the length of the longest
- substring with all distinct characters.
+## 14 Write a function called findLongestSubstring,
+
+which accepts a string and returns the length of the longest
+substring with all distinct characters.
 
 ## Usage
 
@@ -516,9 +520,11 @@ function findLongestSubstring(str) {
 
 //console.log(findLongestSubstring("thecatinthehat"));
 ```
-## 15  BubbleSort algorithm
+
+## 15 BubbleSort algorithm
 
 ## Usage
+
 ```js
 function bubbleSort(arr) {
   let noSowp;
@@ -540,11 +546,12 @@ function bubbleSort(arr) {
 const arr = [10, 4, 6, 7, 9, 64, 4];
 
 //console.log(bubbleSort(arr)); // [ 4, 4, 6, 7,
-
 ```
-## 15  Selection Sort algorithm
+
+## 15 Selection Sort algorithm
 
 ## Usage
+
 ```js
 function selectionSort(arr) {
   for (let i = 0; i < arr.length; i++) {
@@ -568,9 +575,10 @@ console.log(selectionSort(arr));
 //console.log(findLongestSubstring("thecatinthehat"));
 ```
 
-## 16  Insertion Sort algorithm
+## 16 Insertion Sort algorithm
 
 ## Usage
+
 ```js
 let arr = [9, 3, 12, 5, 4, 22, 7];
 
@@ -589,11 +597,10 @@ function insertionSort(array) {
 console.log(insertionSort(arr));
 ```
 
-
-
-## 17  Merge Sort algorithm
+## 17 Merge Sort algorithm
 
 ## Usage
+
 ```js
 function merge(arr1, arr2) {
   let result = [];
@@ -633,12 +640,12 @@ function mergeSort(arr) {
 }
 
 console.log(mergeSort([3, 2, 3, 3, 242, 54, 343, 43, 55]));
-
 ```
 
-## 18  Quick Sort algorithm
+## 18 Quick Sort algorithm
 
 ## Usage
+
 ```js
 function pivot(arr, start, end) {
   function swap(arr, i, j) {
@@ -664,6 +671,8 @@ function pivot(arr, start, end) {
 //console.log(pivot([4, 8, 2, 1, 5, 7, 6, 3, 434, 23, 32, 3]));
 
 function quickSort(arr, left = 0, right = arr.length - 1) {
+
+
   if (left > right) {
     return arr;
   }
@@ -676,5 +685,45 @@ function quickSort(arr, left = 0, right = arr.length - 1) {
 }
 
 //console.log(quickSort([4, 8, 2, 1, 5, 7, 6, 3, 434, 23, 32, 3]));
+```
+
+## 19 Radix Sort algorithm(does not compare)
+
+## Usage
+
+```js
+//! radix sort
+
+function getIndexValueFromRight(num, place) {
+  return Math.floor(Math.abs(num / Math.pow(10, place))) % 10;
+}
+
+function digitCounter(num) {
+  return Math.floor(Math.log10(Math.abs(num))) + 1;
+}
+
+function arrayElementsDigitCounter(arr) {
+  let longerDigitsCount = 0;
+  for (let i = 0; i < arr.length; i++) {
+    longerDigitsCount = Math.max(longerDigitsCount, digitCounter(arr[i]));
+  }
+  return longerDigitsCount;
+}
+
+function RadixSort(arr) {
+  let maxDigits = arrayElementsDigitCounter(arr);
+  for (let i = 0; i < maxDigits; i++) {
+    const buckts = Array.from({ length: 10 }, () => []);
+
+    for (let j = 0; j < arr.length; j++) {
+      buckts[getIndexValueFromRight(arr[j], i)].push(arr[j]);
+    }
+    arr = [].concat(...buckts);
+  }
+  return arr;
+}
+
+console.log(RadixSort([32, 3, 844, 122, 1033, 299, 11, 239, 2, 33, 283, 2352]));
+
 
 ```

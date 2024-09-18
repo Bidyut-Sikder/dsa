@@ -1,36 +1,32 @@
-function pivot(arr, start, end) {
-  function swap(arr, i, j) {
-    let temp = arr[i];
-    arr[i] = arr[j];
-    arr[j] = temp;
-  }
+//! radix sort
 
-  let pivot = arr[start];
-  let startIndex = start;
-
-  for (let i = start + 1; i < arr.length; i++) {
-    if (pivot > arr[i]) {
-      startIndex++;
-      swap(arr, startIndex, i);
-    }
-  }
-
-  swap(arr, start, startIndex);
-
-  return startIndex;
+function getIndexValueFromRight(num, place) {
+  return Math.floor(Math.abs(num / Math.pow(10, place))) % 10;
 }
-//console.log(pivot([4, 8, 2, 1, 5, 7, 6, 3, 434, 23, 32, 3]));
 
-function quickSort(arr, left = 0, right = arr.length - 1) {
-  if (left > right) {
-    return arr;
+function digitCounter(num) {
+  return Math.floor(Math.log10(Math.abs(num))) + 1;
+}
+
+function arrayElementsDigitCounter(arr) {
+  let longerDigitsCount = 0;
+  for (let i = 0; i < arr.length; i++) {
+    longerDigitsCount = Math.max(longerDigitsCount, digitCounter(arr[i]));
   }
+  return longerDigitsCount;
+}
 
-  let pivotIndex = pivot(arr, left);
-  quickSort(arr, left, pivotIndex - 1);
-  quickSort(arr, pivotIndex + 1, right);
+function RadixSort(arr) {
+  let maxDigits = arrayElementsDigitCounter(arr);
+  for (let i = 0; i < maxDigits; i++) {
+    const buckts = Array.from({ length: 10 }, () => []);
 
+    for (let j = 0; j < arr.length; j++) {
+      buckts[getIndexValueFromRight(arr[j], i)].push(arr[j]);
+    }
+    arr = [].concat(...buckts);
+  }
   return arr;
 }
 
-//console.log(quickSort([4, 8, 2, 1, 5, 7, 6, 3, 434, 23, 32, 3]));
+console.log(RadixSort([32, 3, 844, 122, 1033, 299, 11, 239, 2, 33, 283, 2352]));
