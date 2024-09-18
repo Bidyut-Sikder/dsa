@@ -1,32 +1,54 @@
-//! radix sort
-
-function getIndexValueFromRight(num, place) {
-  return Math.floor(Math.abs(num / Math.pow(10, place))) % 10;
-}
-
-function digitCounter(num) {
-  return Math.floor(Math.log10(Math.abs(num))) + 1;
-}
-
-function arrayElementsDigitCounter(arr) {
-  let longerDigitsCount = 0;
-  for (let i = 0; i < arr.length; i++) {
-    longerDigitsCount = Math.max(longerDigitsCount, digitCounter(arr[i]));
+class Node {
+  constructor(val) {
+    this.val = val;
+    this.next = null;
   }
-  return longerDigitsCount;
 }
 
-function RadixSort(arr) {
-  let maxDigits = arrayElementsDigitCounter(arr);
-  for (let i = 0; i < maxDigits; i++) {
-    const buckts = Array.from({ length: 10 }, () => []);
+class singlyLinkedList {
+  constructor() {
+    this.head = null;
+    this.tail = null;
+    this.length = 0;
+  }
 
-    for (let j = 0; j < arr.length; j++) {
-      buckts[getIndexValueFromRight(arr[j], i)].push(arr[j]);
+  push(val) {
+    let newNode = new Node(val);
+
+    if (!this.head) {
+      this.head = newNode;
+      this.tail = this.head;
+    } else {
+      this.tail.next = newNode;
+      this.tail = newNode;
     }
-    arr = [].concat(...buckts);
+    this.length++;
+    return this;
   }
-  return arr;
+
+  traverse() {
+    //*traverse means itarating through all elements
+    let current = this.head;
+    while (current) {
+      current = current.next;
+    }
+  }
+
+  pop() {
+    if (!this.head) return undefined;
+  
+  
+  
+  
+  }
 }
 
-console.log(RadixSort([32, 3, 844, 122, 1033, 299, 11, 239, 2, 33, 283, 2352]));
+let list = new singlyLinkedList();
+
+list.push("bidyut");
+list.push("hii");
+list.push("hiii");
+list.push("hifii");
+list.push("hidii");
+
+list.traverse();
