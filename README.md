@@ -1,3 +1,5 @@
+# Data Algorithms
+
 ## 1 Write a function that counts string unique charectar
 
 ## Usage
