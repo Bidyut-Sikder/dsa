@@ -1,6 +1,3 @@
-
-
-
 class Node {
   constructor(val) {
     this.val = val;
@@ -39,10 +36,21 @@ class singlyLinkedList {
 
   pop() {
     if (!this.head) return undefined;
-  
-  
-  
-  
+    let current = this.head;
+    let newTail = this.head;
+    while (current.next) {
+      newTail = current;
+      current = current.next;
+    }
+    this.tail = newTail;
+    this.tail.next = null;
+
+    this.length--;
+    if (this.length === 0) {
+      this.tail = null;
+      this.head = null;
+    }
+    return current;
   }
 }
 
@@ -50,8 +58,15 @@ let list = new singlyLinkedList();
 
 list.push("bidyut");
 list.push("hii");
-list.push("hiii");
-list.push("hifii");
-list.push("hidii");
 
-list.traverse();
+list.push("hidi3232i");
+
+list.pop();
+list.pop();
+list.pop();
+list.push(2345);
+list.push(23);
+list.pop();
+list.pop();
+list.pop();
+console.log(list);
