@@ -2,6 +2,9 @@
 
 ## 1 Singly Linked List (push,traverse,pop )
 
+### A Singly Linked List is a linear data structure made up of nodes, where each node contains two parts [val,next]
+ ### Head -> [Data | Next] -> [Data | Next] -> null
+
 ## Usage
 
 ```js
