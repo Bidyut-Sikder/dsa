@@ -111,7 +111,7 @@ class singlyLinkedList {
     }
     return false;
   }
-   insert(index, value) {
+  insert(index, value) {
     if (index < 0 || index > this.length) return false;
     if (index === 0) return !!this.unshift(value);
     if (index === this.length) return !!this.push(value);
@@ -119,13 +119,26 @@ class singlyLinkedList {
     let newNode = new Node(value);
     let previousNode = this.get(index - 1);
 
-    let current =previousNode.next //this.get(index);
+    let current = previousNode.next; //this.get(index);
 
     previousNode.next = newNode;
     newNode.next = current;
 
     this.length++;
     return true;
+  }
+  remove(index) {
+    if (index < 0 || index > this.length) return null;
+
+    if (index === 0) return this.shift(index);
+    if (index === this.length) return this.pop(index);
+
+    let previousNode = this.get(index - 1);
+    let currentNode = previousNode.next;
+
+    previousNode.next = currentNode.next;
+    this.length--;
+    return currentNode;
   }
 }
 

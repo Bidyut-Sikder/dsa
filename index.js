@@ -114,13 +114,27 @@ class singlyLinkedList {
     let newNode = new Node(value);
     let previousNode = this.get(index - 1);
 
-    let current =previousNode.next //this.get(index);
+    let current = previousNode.next; //this.get(index);
 
     previousNode.next = newNode;
     newNode.next = current;
 
     this.length++;
     return true;
+  }
+
+  remove(index) {
+    if (index < 0 || index > this.length) return null;
+
+    if (index === 0) return this.shift(index);
+    if (index === this.length) return this.pop(index);
+
+    let previousNode = this.get(index - 1);
+    let currentNode = previousNode.next;
+
+    previousNode.next = currentNode.next;
+    this.length--;
+    return currentNode
   }
 }
 
@@ -130,16 +144,7 @@ list.push("sajeeb");
 list.push("rajeeb");
 list.push("kalu");
 
-//list.unshift("sikder");
+//list.remove(1)
 
-// list.unshift("nalu");
-console.log(list.insert(3, "nayon"));
-// console.log(list.insert(0, "nayon"));
-
-//list.traverse();
-//list.shift();
-//list.shift();
-// list.shift();
-
-//console.log(list);
-console.log(list.get(3));
+console.log(list.remove(2));
+console.log(list);
