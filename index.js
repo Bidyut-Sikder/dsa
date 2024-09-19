@@ -83,22 +83,34 @@ class singlyLinkedList {
     return this;
   }
 
+  get(index) {
+    if (this.length < index || index < 0) return null;
+    let counter = 0;
+    let current = this.head;
 
+    while (counter < index) {
+      current = current.next;
+      counter++;
+    }
 
-
-
-
+    return current;
+  }
 }
 
 let list = new singlyLinkedList();
-//list.push("bidyut");
-// list.push("sajeeb");
-list.unshift("sikder");
+list.push("bidyut");
+list.push("sajeeb");
+list.push("rajeeb");
+
+//list.unshift("sikder");
 
 // list.unshift("nalu");
 
-list.traverse();
+//list.traverse();
 //list.shift();
 //list.shift();
 // list.shift();
-console.log(list);
+
+console.log(list.get(1));
+
+//console.log(list);
