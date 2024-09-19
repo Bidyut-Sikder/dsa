@@ -3,7 +3,8 @@
 ## 1 Singly Linked List (push,traverse,pop,shift,unshift )
 
 ### A Singly Linked List is a linear data structure made up of nodes, where each node contains two parts [val,next]
- ### Head -> [Data | Next] -> [Data | Next] -> null
+
+### Head -> [Data | Next] -> [Data | Next] -> null
 
 ## Usage
 
@@ -62,7 +63,7 @@ class singlyLinkedList {
     }
     return current;
   }
-   shift() {
+  shift() {
     if (!this.head) return undefined;
 
     let current = this.head;
@@ -74,7 +75,7 @@ class singlyLinkedList {
     }
     return current;
   }
-    unshift(val) {
+  unshift(val) {
     let newNode = new Node(val);
     // console.log(this.head);
 
@@ -87,6 +88,18 @@ class singlyLinkedList {
     }
     this.length++;
     return this;
+  }
+  get(index) {
+    if (this.length < index || index < 0) return null;
+    let counter = 0;
+    let current = this.head;
+
+    while (counter < index) {
+      current = current.next;
+      counter++;
+    }
+
+    return current;
   }
 }
 
