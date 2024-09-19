@@ -30,8 +30,10 @@ class singlyLinkedList {
     //*traverse means itarating through all elements
     let current = this.head;
     while (current) {
+      console.log(current.val);
       current = current.next;
     }
+    return this;
   }
 
   pop() {
@@ -52,21 +54,51 @@ class singlyLinkedList {
     }
     return current;
   }
+
+  shift() {
+    if (!this.head) return undefined;
+
+    let current = this.head;
+    this.head = current.next;
+
+    this.length--;
+    if (this.head === null) {
+      this.tail = null;
+    }
+    return current;
+  }
+
+  unshift(val) {
+    let newNode = new Node(val);
+    // console.log(this.head);
+
+    if (!this.head) {
+      this.head = newNode;
+      this.tail = this.head;
+    } else {
+      newNode.next = this.head;
+      this.head = newNode;
+    }
+    this.length++;
+    return this;
+  }
+
+
+
+
+
+
 }
 
 let list = new singlyLinkedList();
+//list.push("bidyut");
+// list.push("sajeeb");
+list.unshift("sikder");
 
-list.push("bidyut");
-list.push("hii");
+// list.unshift("nalu");
 
-list.push("hidi3232i");
-
-list.pop();
-list.pop();
-list.pop();
-list.push(2345);
-list.push(23);
-list.pop();
-list.pop();
-list.pop();
+list.traverse();
+//list.shift();
+//list.shift();
+// list.shift();
 console.log(list);
