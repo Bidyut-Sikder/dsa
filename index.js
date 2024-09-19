@@ -98,7 +98,6 @@ class singlyLinkedList {
 
   set(index, value) {
     let foundNode = this.get(index);
-    console.log(foundNode);
 
     if (foundNode) {
       foundNode.val = value;
@@ -106,21 +105,41 @@ class singlyLinkedList {
     }
     return false;
   }
+
+  insert(index, value) {
+    if (index < 0 || index > this.length) return false;
+    if (index === 0) return !!this.unshift(value);
+    if (index === this.length) return !!this.push(value);
+
+    let newNode = new Node(value);
+    let previousNode = this.get(index - 1);
+
+    let current =previousNode.next //this.get(index);
+
+    previousNode.next = newNode;
+    newNode.next = current;
+
+    this.length++;
+    return true;
+  }
 }
 
 let list = new singlyLinkedList();
 list.push("bidyut");
 list.push("sajeeb");
 list.push("rajeeb");
+list.push("kalu");
 
 //list.unshift("sikder");
 
 // list.unshift("nalu");
-console.log(list.set(2, "tonmoy"));
+console.log(list.insert(3, "nayon"));
+// console.log(list.insert(0, "nayon"));
 
 //list.traverse();
 //list.shift();
 //list.shift();
 // list.shift();
 
-console.log(list);
+//console.log(list);
+console.log(list.get(3));
