@@ -95,6 +95,17 @@ class singlyLinkedList {
 
     return current;
   }
+
+  set(index, value) {
+    let foundNode = this.get(index);
+    console.log(foundNode);
+
+    if (foundNode) {
+      foundNode.val = value;
+      return true;
+    }
+    return false;
+  }
 }
 
 let list = new singlyLinkedList();
@@ -105,12 +116,11 @@ list.push("rajeeb");
 //list.unshift("sikder");
 
 // list.unshift("nalu");
+console.log(list.set(2, "tonmoy"));
 
 //list.traverse();
 //list.shift();
 //list.shift();
 // list.shift();
 
-console.log(list.get(1));
-
-//console.log(list);
+console.log(list);

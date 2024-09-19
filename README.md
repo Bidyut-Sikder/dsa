@@ -101,6 +101,16 @@ class singlyLinkedList {
 
     return current;
   }
+    set(index, value) {
+    let foundNode = this.get(index);
+    console.log(foundNode);
+
+    if (foundNode) {
+      foundNode.val = value;
+      return true;
+    }
+    return false;
+  }
 }
 
 let list = new singlyLinkedList();
