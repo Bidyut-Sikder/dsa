@@ -134,7 +134,25 @@ class singlyLinkedList {
 
     previousNode.next = currentNode.next;
     this.length--;
-    return currentNode
+    return currentNode;
+  }
+
+  reverse() {
+    let node = this.head;
+    this.head = this.tail;
+    this.tail = node;
+
+    let next;
+    let previous = null;
+
+    for (let i = 0; i < this.length; i++) {
+      next = node.next;
+
+      node.next = previous;
+
+      previous = node;
+      node = next;
+    }
   }
 }
 
@@ -146,5 +164,9 @@ list.push("kalu");
 
 //list.remove(1)
 
-console.log(list.remove(2));
-console.log(list);
+//console.log(list);
+list.reverse();
+
+list.traverse();
+
+//console.log(list);
