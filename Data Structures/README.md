@@ -178,7 +178,7 @@ list.pop();
 console.log(list);
 ```
 
-## 2 Doubly Linked List (push,traverse,pop,shift,unshift ,get, set,insert,remove ,reverse)
+## 2 Doubly Linked List (push,pop,shift )
 
 ### A Doubly Linked List (DLL) is a type of linked data structure that consists of nodes, where each node has references to both its previous and next nodes. This allows traversal in both directions (forward and backward), unlike a singly linked list, which only allows forward traversal.
 
@@ -215,13 +215,41 @@ class singlyLinkedList {
     return this;
   }
 
-  
+  pop() {
+    let popNode = this.tail;
+    if (this.length === 0) return undefined;
+
+    if (this.length === 1) {
+      this.head = null;
+      this.tail = null;
+    } else {
+      this.tail = popNode.prev;
+      this.tail.next = null;
+      popNode.prev = null;
+    }
+    this.length--;
+    return popNode;
+  }
+  shift() {
+    let oldNode = this.head;
+    if (this.length === 0) return undefined;
+
+    if (this.length === 1) {
+      this.head = null;
+      this.tail = null;
+    } else {
+      this.head = oldNode.next;
+      oldNode.next = null;
+      this.head.prev = null;
+    }
+    this.length--;
+    return oldNode;
+  }
 }
 
 let list = new singlyLinkedList();
 
 list.push("bidyut");
-
 
 console.log(list);
 ```
