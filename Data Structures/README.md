@@ -245,6 +245,15 @@ class singlyLinkedList {
     this.length--;
     return oldNode;
   }
+  set(index, value) {
+    let current = this.get(index);
+
+    if (current != null) {
+      current.val = value;
+      return true;
+    }
+    return false;
+  }
 }
 
 let list = new singlyLinkedList();
