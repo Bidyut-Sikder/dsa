@@ -1,4 +1,4 @@
-//Stack
+//Queues
 
 class Node {
   constructor(val) {
@@ -7,48 +7,46 @@ class Node {
   }
 }
 
-class Stack {
+class Queue {
   constructor() {
     this.first = null;
     this.last = null;
     this.size = 0;
   }
-  //push() //!todo: this push mehtod pushes data to the begining like unshift.
-  push(val) {
-    let newNode = new Node(val);
 
+  enqueue(val) {
+    let newNode = new Node(val);
     if (!this.first) {
-      this.first = newNode;
-      this.last = newNode;
+      this.first = this.last = newNode;
     } else {
-      let node = this.first;
-      this.first = newNode;
-      this.first.next = node;
+      this.last.next = newNode;
+      this.last = newNode;
+    }
+    ++this.size;
+  }
+  dequeue() {
+    if (!this.first) {
+      return null;
     }
 
-    this.size++;
-  }
-  //pop() //!todo: this pop mehtod pops out data from the end .
-
-  pop() {
-    if (!this.first) return null;
-
-    let poppedNode = this.first;
     if (this.first === this.last) {
       this.last = null;
     }
-    this.first = poppedNode.next;
-    this.size--;
-    return poppedNode.val;
+
+    let removedNode = this.first;
+    this.first = removedNode.next;
+    removedNode.next = null;
+    --this.size;
+    return removedNode;
   }
 }
 
-const stack = new Stack();
+//[1,2,3,4]
 
-stack.push("bidyut");
-stack.push("sikder");
-stack.push("tonmoy");
-stack.push("kumar");
-console.log(stack.pop());
+let queue = new Queue();
 
-//console.log(stack);
+queue.enqueue("bidyut");
+queue.enqueue("sikder");
+queue.enqueue("roy");
+
+console.log(queue.dequeue());
