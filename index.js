@@ -1,52 +1,47 @@
-//Queues
-
 class Node {
-  constructor(val) {
-    this.val = val;
-    this.next = null;
+  constructor(value) {
+    this.value = value;
+    this.left = null;
+    this.right = null;
   }
 }
 
-class Queue {
+class BinarySearchTree {
   constructor() {
-    this.first = null;
-    this.last = null;
-    this.size = 0;
+    this.root = null;
   }
 
-  enqueue(val) {
-    let newNode = new Node(val);
-    if (!this.first) {
-      this.first = this.last = newNode;
-    } else {
-      this.last.next = newNode;
-      this.last = newNode;
-    }
-    ++this.size;
-  }
-  dequeue() {
-    if (!this.first) {
-      return null;
+  insert(value) {
+    let newNode = new Node();
+
+    if (this.root === null) {
+      this.root = newNode;
+      return this;
     }
 
-    if (this.first === this.last) {
-      this.last = null;
-    }
+    let current = this.root;
+    while (true) {
+      if (current.value === value) return undefined;
 
-    let removedNode = this.first;
-    this.first = removedNode.next;
-    removedNode.next = null;
-    --this.size;
-    return removedNode;
+      if (value < current.value) {
+        if (current.left === null) {
+          current.left = newNode;
+          return this;
+        } else {
+          current = current.left;
+        }
+      } else if (current.value < value) {
+        if (current.right === null) {
+          current.right = newNode;
+          return this
+        } else {
+          current = current.right;
+        }
+      }
+    }
   }
 }
 
-//[1,2,3,4]
+const tree = new BinarySearchTree();
 
-let queue = new Queue();
-
-queue.enqueue("bidyut");
-queue.enqueue("sikder");
-queue.enqueue("roy");
-
-console.log(queue.dequeue());
+console.log(tree);
