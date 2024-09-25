@@ -416,8 +416,7 @@ console.log(queue.dequeue());
 ```
 
 
-## 4 Binary Search Tree 
-
+## 4 Binary Search Tree (insert, find)
 
 ## Usage
 
@@ -463,6 +462,26 @@ class BinarySearchTree {
         }
       }
     }
+  }
+  find(value) {
+    let current = this.root;
+
+    let found = false;
+    while (current && !found) {
+
+
+      if (current.value > value) {
+        current = current.left;
+      } else if (current.value < value) {
+        current = current.right;
+      } else {
+        found = true;
+
+      }
+    
+    }
+    return current
+   
   }
 }
 
