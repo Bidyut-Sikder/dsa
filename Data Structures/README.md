@@ -496,6 +496,17 @@ class BinarySearchTree {
     }
     return visited
   }
+  depthFirst() {
+    let current = this.root;
+    let visited=[]
+    function checking(node) {
+      visited.push(node.value)
+      if (node.left)  checking(node.left);
+      if (node.right)  checking(node.right);
+    }
+    checking(current);
+    return visited
+  }
 }
 
 const tree = new BinarySearchTree();
