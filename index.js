@@ -1,10 +1,19 @@
-class MaxBinaryHeap {
+class Node {
+  constructor(val, priority) {
+    this.val = val;
+    this.priority = priority;
+  }
+}
+
+class PriorityQueue {
   constructor() {
-    this.values = [41, 39, 33, 18, 27, 12];
+    this.values = [];
   }
 
-  insert(element) {
-    this.values.push(element);
+  enqueue(element, priority) {
+    let newNode = new Node(element, priority);
+
+    this.values.push(newNode);
     this.bubbleUp();
   }
   bubbleUp() {
@@ -14,21 +23,21 @@ class MaxBinaryHeap {
       let parentIndex = Math.floor((elementIndex - 1) / 2);
       let parant = this.values[parentIndex];
 
-      if (element <= parant) break;
+      if (element.priority >= parant.priority) break;
       this.values[elementIndex] = parant;
       this.values[parentIndex] = element;
       elementIndex = parentIndex;
     }
   }
 
-  extractMax() {
+  dequeue() {
     let max = this.values[0];
     let end = this.values.pop();
-    this.values[0] = end;
+    if (this.values.length > 0) {
+      this.values[0] = end;
+      this.sinkDown();
+    }
 
-    this.sinkDown();
-    console.log("fd");
-    console.log(this.values);
     return max;
   }
   sinkDown() {
@@ -45,7 +54,7 @@ class MaxBinaryHeap {
 
       if (leftChildIndex < length) {
         leftChild = this.values[leftChildIndex];
-        if (leftChild > element) {
+        if (leftChild.priority > element.priority) {
           swap = leftChildIndex;
         }
       }
@@ -53,8 +62,8 @@ class MaxBinaryHeap {
         rightChild = this.values[rightChildIndex];
 
         if (
-          (swap === null && element < rightChild) ||
-          (swap !== null && leftChild < rightChild)
+          (swap === null && element.priority < rightChild.priority) ||
+          (swap !== null && leftChild.priority < rightChild.priority)
         ) {
           swap = rightChildIndex;
         }
@@ -69,8 +78,14 @@ class MaxBinaryHeap {
   }
 }
 
-let heap = new MaxBinaryHeap();
-//heap.insert(200);
-//heap.insert(16);
-heap.extractMax();
-console.log(heap);
+let queue = new PriorityQueue();
+
+queue.enqueue("common cold", 5);
+queue.enqueue("faver ", 3);
+queue.enqueue("corona ", 1);
+queue.enqueue("flu ", 2);
+
+
+console.log(queue.dequeue());
+
+//console.log(queue);
