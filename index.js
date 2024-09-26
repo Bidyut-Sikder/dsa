@@ -1,97 +1,28 @@
-class Node {
-  constructor(value) {
-    this.value = value;
-    this.left = null;
-    this.right = null;
-  }
-}
-
-class BinarySearchTree {
+class MaxBinaryHeap {
   constructor() {
-    this.root = null;
+    this.values = [41, 39, 33, 18, 27, 12];
   }
 
-  insert(value) {
-    let newNode = new Node(value);
-
-    if (this.root === null) {
-      this.root = newNode;
-      return this;
-    }
-
-    let current = this.root;
-    while (true) {
-      if (current.value === value) return undefined;
-
-      if (value < current.value) {
-        if (current.left === null) {
-          current.left = newNode;
-          return this;
-        } else {
-          current = current.left;
-        }
-      } else if (current.value < value) {
-        if (current.right === null) {
-          current.right = newNode;
-
-          return this;
-        } else {
-          current = current.right;
-        }
-      }
-    }
+  insert(element) {
+    this.values.push(element);
+    this.bubbleUp();
   }
+  bubbleUp() {
+    let elementIndex = this.values.length - 1;
+    let element = this.values[elementIndex];
+    while (elementIndex > 0) {
+      let parentIndex = Math.floor((elementIndex - 1) / 2);
+      let parant = this.values[parentIndex];
 
-  find(value) {
-    let current = this.root;
-
-    let found = false;
-    while (current && !found) {
-      if (current.value > value) {
-        current = current.left;
-      } else if (current.value < value) {
-        current = current.right;
-      } else {
-        found = true;
-      }
+      if (element <= parant) break;
+      this.values[elementIndex] = parant;
+      this.values[parentIndex] = element;
+      elementIndex = parentIndex;
     }
-    return current;
-  }
-  //traverse
-  breadthFirst() {
-    let current = this.root;
-    let visited = [];
-    let queue = [];
-
-    queue.push(current);
-
-    while (queue.length) {
-      current = queue.shift();
-      visited.push(current.value);
-
-      if (current.left) queue.push(current.left);
-      if (current.right) queue.push(current.right);
-    }
-    return visited;
-  }
-
-  depthFirst() {
-    let current = this.root;
-    let visited=[]
-    function checking(node) {
-      visited.push(node.value)
-      if (node.left)  checking(node.left);
-      if (node.right)  checking(node.right);
-    }
-    checking(current);
-    return visited
   }
 }
 
-const tree = new BinarySearchTree();
-
-tree.insert(20);
-tree.insert(34);
-tree.insert(18);
-tree.insert(16);
-console.log(tree.depthFirst());
+let heap = new MaxBinaryHeap();
+heap.insert(200);
+//heap.insert(16);
+console.log(heap);

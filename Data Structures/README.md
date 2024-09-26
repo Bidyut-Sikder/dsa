@@ -477,7 +477,7 @@ class BinarySearchTree {
     }
     return current;
   }
-  //tree traverse 
+  //tree traverse
   breadthFirst() {
     let current = this.root;
     let visited = [];
@@ -491,25 +491,82 @@ class BinarySearchTree {
 
       if (current.left) queue.push(current.left);
       if (current.right) queue.push(current.right);
-      
-      
     }
-    return visited
+    return visited;
   }
   depthFirst() {
+    //depth first pre order
     let current = this.root;
-    let visited=[]
+    let visited = [];
     function checking(node) {
-      visited.push(node.value)
-      if (node.left)  checking(node.left);
-      if (node.right)  checking(node.right);
+      visited.push(node.value);
+      if (node.left) checking(node.left);
+      if (node.right) checking(node.right);
     }
     checking(current);
-    return visited
+    return visited;
+  }
+
+  depthFirstPostOrder() {
+    let current = this.root;
+    let visited = [];
+    function traverse(node) {
+      if (node.left) traverse(node.left);
+      if (node.right) traverse(node.right);
+      visited.push(node.value);
+    }
+    traverse(current);
+    return visited;
+  }
+  depthFirstInorder() {
+    let current = this.root;
+    let visited = [];
+    function traverse(node) {
+      if (node.left) traverse(node.left);
+      visited.push(node.value);
+      if (node.right) traverse(node.right);
+    }
+    traverse(current);
+    return visited;
   }
 }
 
 const tree = new BinarySearchTree();
 
 console.log(tree);
+```
+
+## 5 Binary Heap
+
+## Usage
+
+```js
+class MaxBinaryHeap {
+  constructor() {
+    this.values = [41, 39, 33, 18, 27, 12];
+  }
+
+  insert(element) {
+    this.values.push(element);
+    this.bubbleUp();
+  }
+  bubbleUp() {
+    let elementIndex = this.values.length - 1;
+    let element = this.values[elementIndex];
+    while (elementIndex > 0) {
+      let parentIndex = Math.floor((elementIndex - 1) / 2);
+      let parant = this.values[parentIndex];
+
+      if (element <= parant) break;
+      this.values[elementIndex] = parant;
+      this.values[parentIndex] = element;
+      elementIndex = parentIndex;
+    }
+  }
+}
+
+let heap = new MaxBinaryHeap();
+heap.insert(200);
+//heap.insert(16);
+console.log(heap);
 ```
