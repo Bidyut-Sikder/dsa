@@ -766,16 +766,45 @@ class HashTable {
       }
     }
   }
+
+  keys() {
+    let keys = [];
+    for (let i = 0; i < this.mapKey.length; i++) {
+      if (this.mapKey[i]) {
+        for (let j = 0; j < this.mapKey[i].length; j++) {
+          if (!keys.includes(this.mapKey[i][j][0])) {
+            keys.push(this.mapKey[i][j][0]);
+          }
+        }
+      }
+    }
+    return keys;
+  }
+
+
+
+
+
 }
 
 
 let ht=new HashTable()
 
-ht.set('bidyut','b')
+ht.set("name", "bidyut");
+ht.set("name", "bidyut");
+ht.set("name", "bidyut");
 
-ht.set('sikder','s')
+ht.set("roll", "20");
+ht.set("house", "tungipara");
+ht.set("address", "salukha");
+ht.set("phone", "011223234");
 
-// ht.set('arr','roy') 
+// ht.set('arr','roy')
+
+// console.log(ht.values());
+// console.log(ht.keys());
+
+//console.log(ht);
 
 
 console.log(ht);

@@ -34,10 +34,40 @@ class HashTable {
       }
     }
   }
+
+
+  keys() {
+    let keys = [];
+    for (let i = 0; i < this.mapKey.length; i++) {
+      if (this.mapKey[i]) {
+        for (let j = 0; j < this.mapKey[i].length; j++) {
+          if (!keys.includes(this.mapKey[i][j][0])) {
+            keys.push(this.mapKey[i][j][0]);
+          }
+        }
+      }
+    }
+    return keys;
+  }
+  values() {
+    let values = [];
+    for (let i = 0; i < this.mapKey.length; i++) {
+      if (this.mapKey[i]) {
+        for (let j = 0; j < this.mapKey[i].length; j++) {
+          if (!values.includes(this.mapKey[i][j][1])) {
+            values.push(this.mapKey[i][j][1]);
+          }
+        }
+      }
+    }
+    return values;
+  }
 }
 
 let ht = new HashTable();
 
+ht.set("name", "bidyut");
+ht.set("name", "bidyut");
 ht.set("name", "bidyut");
 
 ht.set("roll", "20");
@@ -47,6 +77,11 @@ ht.set("phone", "011223234");
 
 // ht.set('arr','roy')
 
-console.log(ht.get("roll"));
+// console.log(ht.values());
+// console.log(ht.keys());
 
 //console.log(ht);
+
+
+
+
