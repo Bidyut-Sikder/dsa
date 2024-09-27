@@ -715,13 +715,6 @@ queue.enqueue("flu ", 2);
 console.log(queue.dequeue());
 ```
 
-
-
-
-
-
-
-
 ## 7 Hash Table
 
 ### A hash table is a data structure that stores key-value pairs in an array using a hash function to
@@ -749,7 +742,7 @@ class HashTable {
   set(key, value) {
     let index = this._hashKey(key);
     console.log(index);
-    
+
     if (!this.mapKey[index]) {
       this.mapKey[index] = [];
     }
@@ -781,14 +774,22 @@ class HashTable {
     return keys;
   }
 
-
-
-
-
+  values() {
+    let values = [];
+    for (let i = 0; i < this.mapKey.length; i++) {
+      if (this.mapKey[i]) {
+        for (let j = 0; j < this.mapKey[i].length; j++) {
+          if (!values.includes(this.mapKey[i][j][1])) {
+            values.push(this.mapKey[i][j][1]);
+          }
+        }
+      }
+    }
+    return values;
+  }
 }
 
-
-let ht=new HashTable()
+let ht = new HashTable();
 
 ht.set("name", "bidyut");
 ht.set("name", "bidyut");
@@ -806,14 +807,5 @@ ht.set("phone", "011223234");
 
 //console.log(ht);
 
-
 console.log(ht);
 ```
-
-
-
-
-
-
-
-
