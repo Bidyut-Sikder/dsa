@@ -17,25 +17,36 @@ class HashTable {
 
   set(key, value) {
     let index = this._hashKey(key);
-    console.log(index);
-    
+
     if (!this.mapKey[index]) {
       this.mapKey[index] = [];
     }
     this.mapKey[index].push([key, value]);
   }
+  get(key) {
+    let index = this._hashKey(key);
+
+    if (this.mapKey[index]) {
+      for (let i = 0; i < this.mapKey[index].length; i++) {
+        if (this.mapKey[index][i][0] === key) {
+          return this.mapKey[index][i][1];
+        }
+      }
+    }
+  }
 }
 
+let ht = new HashTable();
 
-let ht=new HashTable()
+ht.set("name", "bidyut");
 
-ht.set('bidyut','b')
+ht.set("roll", "20");
+ht.set("house", "tungipara");
+ht.set("address", "salukha");
+ht.set("phone", "011223234");
 
-ht.set('sikder','s')
+// ht.set('arr','roy')
 
-// ht.set('arr','roy') 
+console.log(ht.get("roll"));
 
-
-console.log(ht);
-
-
+//console.log(ht);

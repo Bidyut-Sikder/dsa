@@ -755,6 +755,17 @@ class HashTable {
     }
     this.mapKey[index].push([key, value]);
   }
+  get(key) {
+    let index = this._hashKey(key);
+
+    if (this.mapKey[index]) {
+      for (let i = 0; i < this.mapKey[index].length; i++) {
+        if (this.mapKey[index][i][0] === key) {
+          return this.mapKey[index][i][1];
+        }
+      }
+    }
+  }
 }
 
 
