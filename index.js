@@ -1,91 +1,41 @@
-class Node {
-  constructor(val, priority) {
-    this.val = val;
-    this.priority = priority;
+class HashTable {
+  constructor(size = 4) {
+    this.mapKey = new Array(size);
+  }
+
+  _hashKey(key) {
+    let total = 0;
+    let WEIRD_PRIME = 31;
+
+    for (let i = 0; i < Math.min(key.length, 100); i++) {
+      let char = key[i];
+      let charValue = char.charCodeAt(0) - 96;
+      total = (total * WEIRD_PRIME + charValue) % this.mapKey.length;
+    }
+    return total;
+  }
+
+  set(key, value) {
+    let index = this._hashKey(key);
+    console.log(index);
+    
+    if (!this.mapKey[index]) {
+      this.mapKey[index] = [];
+    }
+    this.mapKey[index].push([key, value]);
   }
 }
 
-class PriorityQueue {
-  constructor() {
-    this.values = [];
-  }
 
-  enqueue(element, priority) {
-    let newNode = new Node(element, priority);
+let ht=new HashTable()
 
-    this.values.push(newNode);
-    this.bubbleUp();
-  }
-  bubbleUp() {
-    let elementIndex = this.values.length - 1;
-    let element = this.values[elementIndex];
-    while (elementIndex > 0) {
-      let parentIndex = Math.floor((elementIndex - 1) / 2);
-      let parant = this.values[parentIndex];
+ht.set('bidyut','b')
 
-      if (element.priority >= parant.priority) break;
-      this.values[elementIndex] = parant;
-      this.values[parentIndex] = element;
-      elementIndex = parentIndex;
-    }
-  }
+ht.set('sikder','s')
 
-  dequeue() {
-    let max = this.values[0];
-    let end = this.values.pop();
-    if (this.values.length > 0) {
-      this.values[0] = end;
-      this.sinkDown();
-    }
-
-    return max;
-  }
-  sinkDown() {
-    let inx = 0;
-    let element = this.values[0];
-    let length = this.values.length;
-    let leftChild;
-    let rightChild;
-
-    while (true) {
-      let leftChildIndex = 2 * inx + 1;
-      let rightChildIndex = 2 * inx + 2;
-      let swap = null;
-
-      if (leftChildIndex < length) {
-        leftChild = this.values[leftChildIndex];
-        if (leftChild.priority > element.priority) {
-          swap = leftChildIndex;
-        }
-      }
-      if (rightChildIndex < length) {
-        rightChild = this.values[rightChildIndex];
-
-        if (
-          (swap === null && element.priority < rightChild.priority) ||
-          (swap !== null && leftChild.priority < rightChild.priority)
-        ) {
-          swap = rightChildIndex;
-        }
-      }
-
-      if (swap === null) break;
-
-      this.values[inx] = this.values[swap];
-      this.values[swap] = element;
-      inx = swap;
-    }
-  }
-}
-
-let queue = new PriorityQueue();
-
-queue.enqueue("common cold", 5);
-queue.enqueue("faver ", 3);
-queue.enqueue("corona ", 1);
-queue.enqueue("flu ", 2);
+// ht.set('arr','roy') 
 
 
-console.log(queue.dequeue());
+console.log(ht);
 
-//console.log(queue);
+
