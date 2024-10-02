@@ -851,19 +851,43 @@ class Graph {
     }
     delete this.adjacentList[vertex];
   }
+   depthFirstItration(vertex) {
+    let stack = [vertex];
+    let result = [];
+    let currentVertex;
+    let visited = [];
+    visited[vertex] = true;
+    while (stack.length) {
+      if (!vertex) return null;
+      currentVertex = stack.pop();
+      result.push(currentVertex);
+      this.adjacentList[currentVertex].forEach((element) => {
+        if (!visited[element]) {
+          visited[element] = true;
+          stack.push(element);
+        }
+      });
+    }
+    return result;
+  }
 }
 
 let graph = new Graph();
 
-graph.addVertex("bd");
-graph.addVertex("india");
-graph.addVertex("us");
-graph.addVertex("uk");
+graph.addVertex("A");
+graph.addVertex("B");
+graph.addVertex("C");
+graph.addVertex("D");
+graph.addVertex("E");
+graph.addVertex("F");
 
-graph.addEdge("bd", "india");
-graph.addEdge("bd", "us");
-graph.addEdge("india", "us");
-graph.addEdge("india", "uk");
+graph.addEdge("A", "B");
+graph.addEdge("A", "C");
+graph.addEdge("B", "D");
+graph.addEdge("C", "E");
+graph.addEdge("D", "E");
+graph.addEdge("D", "F");
+graph.addEdge("E", "F");
 
 // graph.removeVertex("india");
 console.log(graph);

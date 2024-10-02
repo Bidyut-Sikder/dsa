@@ -34,19 +34,80 @@ class Graph {
     }
     delete this.adjacentList[vertex];
   }
+
+  //travese
+
+  depthFirstItration(vertex) {
+    let stack = [vertex];
+    let result = [];
+    let currentVertex;
+    let visited = [];
+    visited[vertex] = true;
+    while (stack.length) {
+      if (!vertex) return null;
+      currentVertex = stack.pop();
+      result.push(currentVertex);
+      this.adjacentList[currentVertex].forEach((element) => {
+        if (!visited[element]) {
+          visited[element] = true;
+          stack.push(element);
+        }
+      });
+    }
+    return result;
+  }
+
+  depthFirstRecursion(vertex) {
+    let result = [];
+    let visited = [];
+    let adjacentList = this.adjacentList;
+
+    function recursion(vertex) {
+      if (!vertex) return null;
+      visited[vertex] = true;
+      result.push(vertex);
+
+      adjacentList[vertex].forEach((element) => {
+        if (!visited[element]) {
+          return recursion(element);
+        }
+      });
+    }
+    recursion(vertex);
+    return result;
+  }
+
+
+breadthFirstIteration(vertex){
+
+
+}
+
+
+
+
+
 }
 
 let graph = new Graph();
 
-graph.addVertex("bd");
-graph.addVertex("india");
-graph.addVertex("us");
-graph.addVertex("uk");
+graph.addVertex("A");
+graph.addVertex("B");
+graph.addVertex("C");
+graph.addVertex("D");
+graph.addVertex("E");
+graph.addVertex("F");
 
-graph.addEdge("bd", "india");
-graph.addEdge("bd", "us");
-graph.addEdge("india", "us");
-graph.addEdge("india", "uk");
+graph.addEdge("A", "B");
+graph.addEdge("A", "C");
+graph.addEdge("B", "D");
+graph.addEdge("C", "E");
+graph.addEdge("D", "E");
+graph.addEdge("D", "F");
+graph.addEdge("E", "F");
 
- // graph.removeVertex("india");
-  //console.log(graph);
+// console.log(graph.depthFirstItration("A"));
+  //console.log(graph.depthFirstRecursion("A"));
+console.log(graph.breadthFirstIteration("A"));
+
+// console.log(graph);
