@@ -809,7 +809,7 @@ ht.set("phone", "011223234");
 console.log(ht);
 ```
 
-## 7 Graphs
+## 8 Graphs
 
 ### A graph is a non-linear data structure consisting of nodes or vertices connected by edges. Each node may have multiple edges connected to it, and each edge may connect two nodes.
 
