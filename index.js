@@ -1,87 +1,52 @@
-class HashTable {
-  constructor(size = 4) {
-    this.mapKey = new Array(size);
+//adjacent matrix
+//adjacent list
+class Graph {
+  constructor() {
+    this.adjacentList = {};
   }
 
-  _hashKey(key) {
-    let total = 0;
-    let WEIRD_PRIME = 31;
-
-    for (let i = 0; i < Math.min(key.length, 100); i++) {
-      let char = key[i];
-      let charValue = char.charCodeAt(0) - 96;
-      total = (total * WEIRD_PRIME + charValue) % this.mapKey.length;
-    }
-    return total;
-  }
-
-  set(key, value) {
-    let index = this._hashKey(key);
-
-    if (!this.mapKey[index]) {
-      this.mapKey[index] = [];
-    }
-    this.mapKey[index].push([key, value]);
-  }
-  get(key) {
-    let index = this._hashKey(key);
-
-    if (this.mapKey[index]) {
-      for (let i = 0; i < this.mapKey[index].length; i++) {
-        if (this.mapKey[index][i][0] === key) {
-          return this.mapKey[index][i][1];
-        }
-      }
+  addVertex(vertex) {
+    if (!this.adjacentList[vertex]) {
+      this.adjacentList[vertex] = [];
     }
   }
 
-
-  keys() {
-    let keys = [];
-    for (let i = 0; i < this.mapKey.length; i++) {
-      if (this.mapKey[i]) {
-        for (let j = 0; j < this.mapKey[i].length; j++) {
-          if (!keys.includes(this.mapKey[i][j][0])) {
-            keys.push(this.mapKey[i][j][0]);
-          }
-        }
-      }
-    }
-    return keys;
+  addEdge(vertex1, vertex2) {
+    this.adjacentList[vertex2].push(vertex1);
+    this.adjacentList[vertex1].push(vertex2);
   }
-  values() {
-    let values = [];
-    for (let i = 0; i < this.mapKey.length; i++) {
-      if (this.mapKey[i]) {
-        for (let j = 0; j < this.mapKey[i].length; j++) {
-          if (!values.includes(this.mapKey[i][j][1])) {
-            values.push(this.mapKey[i][j][1]);
-          }
-        }
-      }
+
+  removeEdge(vertex1, vertex2) {
+    this.adjacentList[vertex1] = this.adjacentList[vertex1].filter(
+      (item) => item !== vertex2
+    );
+
+    this.adjacentList[vertex2] = this.adjacentList[vertex2].filter(
+      (item) => item !== vertex1
+    );
+  }
+
+  removeVertex(vertex) {
+    while (this.adjacentList[vertex].length) {
+      let otherVertex = this.adjacentList[vertex].pop();
+
+      this.removeEdge(vertex, otherVertex);
     }
-    return values;
+    delete this.adjacentList[vertex];
   }
 }
 
-let ht = new HashTable();
+let graph = new Graph();
 
-ht.set("name", "bidyut");
-ht.set("name", "bidyut");
-ht.set("name", "bidyut");
+graph.addVertex("bd");
+graph.addVertex("india");
+graph.addVertex("us");
+graph.addVertex("uk");
 
-ht.set("roll", "20");
-ht.set("house", "tungipara");
-ht.set("address", "salukha");
-ht.set("phone", "011223234");
+graph.addEdge("bd", "india");
+graph.addEdge("bd", "us");
+graph.addEdge("india", "us");
+graph.addEdge("india", "uk");
 
-// ht.set('arr','roy')
-
-// console.log(ht.values());
-// console.log(ht.keys());
-
-//console.log(ht);
-
-
-
-
+ // graph.removeVertex("india");
+  //console.log(graph);
