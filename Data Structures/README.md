@@ -870,7 +870,7 @@ class Graph {
     }
     return result;
   }
-    depthFirstRecursion(vertex) {
+  depthFirstRecursion(vertex) {
     let result = [];
     let visited = [];
     let adjacentList = this.adjacentList;
@@ -887,6 +887,26 @@ class Graph {
       });
     }
     recursion(vertex);
+    return result;
+  }
+
+  breadthFirstIteration(vertex) {
+    let queque = [vertex];
+    let result = [];
+    let visited = [];
+    let currentVertex;
+    visited[vertex] = true;
+    while (queque.length) {
+      currentVertex = queque.shift();
+      result.push(currentVertex);
+
+      this.adjacentList[currentVertex].forEach((element) => {
+        if (!visited[element]) {
+          visited[element] = true;
+          queque.push(element);
+        }
+      });
+    }
     return result;
   }
 }
