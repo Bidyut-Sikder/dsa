@@ -851,7 +851,7 @@ class Graph {
     }
     delete this.adjacentList[vertex];
   }
-   depthFirstItration(vertex) {
+  depthFirstItration(vertex) {
     let stack = [vertex];
     let result = [];
     let currentVertex;
@@ -868,6 +868,25 @@ class Graph {
         }
       });
     }
+    return result;
+  }
+    depthFirstRecursion(vertex) {
+    let result = [];
+    let visited = [];
+    let adjacentList = this.adjacentList;
+
+    function recursion(vertex) {
+      if (!vertex) return null;
+      visited[vertex] = true;
+      result.push(vertex);
+
+      adjacentList[vertex].forEach((element) => {
+        if (!visited[element]) {
+          return recursion(element);
+        }
+      });
+    }
+    recursion(vertex);
     return result;
   }
 }

@@ -77,16 +77,25 @@ class Graph {
     return result;
   }
 
+  breadthFirstIteration(vertex) {
+    let queque = [vertex];
+    let result = [];
+    let visited = [];
+    let currentVertex;
+    visited[vertex] = true;
+    while (queque.length) {
+      currentVertex = queque.shift();
+      result.push(currentVertex);
 
-breadthFirstIteration(vertex){
-
-
-}
-
-
-
-
-
+      this.adjacentList[currentVertex].forEach((element) => {
+        if (!visited[element]) {
+          visited[element] = true;
+          queque.push(element);
+        }
+      });
+    }
+    return result;
+  }
 }
 
 let graph = new Graph();
@@ -107,7 +116,7 @@ graph.addEdge("D", "F");
 graph.addEdge("E", "F");
 
 // console.log(graph.depthFirstItration("A"));
-  //console.log(graph.depthFirstRecursion("A"));
+//console.log(graph.depthFirstRecursion("A"));
 console.log(graph.breadthFirstIteration("A"));
 
 // console.log(graph);
