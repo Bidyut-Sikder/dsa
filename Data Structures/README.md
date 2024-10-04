@@ -354,7 +354,7 @@ console.log(stack.pop());
 //console.log(stack);
 ```
 
-## 3 Queue
+## 4 Queue
 
 ### Excels in Insertion and Deletion.
 
@@ -415,7 +415,7 @@ queue.enqueue("roy");
 console.log(queue.dequeue());
 ```
 
-## 4 Binary Search Tree (insert, find)
+## 5 Binary Search Tree (insert, find)
 
 ## Usage
 
@@ -536,7 +536,7 @@ const tree = new BinarySearchTree();
 console.log(tree);
 ```
 
-## 5 Binary Heap
+## 6 Binary Heap
 
 ## Usage
 
@@ -618,7 +618,7 @@ heap.insert(200);
 console.log(heap);
 ```
 
-## 6 Prority Queue
+## 7 Prority Queue
 
 ### severe prority starts from 1
 
@@ -715,7 +715,7 @@ queue.enqueue("flu ", 2);
 console.log(queue.dequeue());
 ```
 
-## 7 Hash Table
+## 8 Hash Table
 
 ### A hash table is a data structure that stores key-value pairs in an array using a hash function to
 
@@ -809,7 +809,7 @@ ht.set("phone", "011223234");
 console.log(ht);
 ```
 
-## 8 Graphs
+## 9 Graphs
 
 ### A graph is a non-linear data structure consisting of nodes or vertices connected by edges. Each node may have multiple edges connected to it, and each edge may connect two nodes.
 
@@ -930,4 +930,131 @@ graph.addEdge("E", "F");
 
 // graph.removeVertex("india");
 console.log(graph);
+```
+
+## 10 Dijkstra's Algorithm
+
+### Dijkstra's algorithm is a well-known algorithm in graph theory for finding the shortest paths between nodes in a graph.
+
+## Usage
+
+```js
+//dijkstr's algorithm
+
+class PriorityQueue {
+  constructor() {
+    this.values = [];
+  }
+
+  enqueue(val, priority) {
+    if (!this.values[val]) this.values.push({ val, priority });
+
+    this.sort();
+  }
+
+  dequeue() {
+    return this.values.shift();
+  }
+
+  sort() {
+    this.values.sort((a, b) => a.priority - b.priority);
+  }
+}
+
+class weightedGraph {
+  constructor() {
+    this.adjacentList = {};
+  }
+
+  addVertex(vertex) {
+    if (!this.adjacentList[vertex]) this.adjacentList[vertex] = [];
+  }
+  addEdge(vertex1, vertex2, weight) {
+    this.adjacentList[vertex1].push({ node: vertex2, weight });
+    this.adjacentList[vertex2].push({ node: vertex1, weight });
+  }
+
+  dijkstras(start, finish) {
+    //starting point =A
+    //ending point =E
+
+    const nodes = new PriorityQueue();
+
+    const distances = {};
+    const previous = {};
+    let smallest;
+    let path = [];
+
+    //build up initial state
+    for (const vertex in this.adjacentList) {
+      if (vertex === start) {
+        distances[vertex] = 0;
+        nodes.enqueue(vertex, 0);
+      } else {
+        distances[vertex] = Infinity;
+        nodes.enqueue(vertex, Infinity);
+      }
+      previous[vertex] = null;
+    }
+    //as long as there is somthing to visit
+
+    while (nodes.values.length) {
+      smallest = nodes.dequeue().val;
+
+      //  console.log(smallest)
+      if (smallest === finish) {
+        // console.log("done");
+
+        while (previous[smallest]) {
+          path.push(smallest);
+          smallest = previous[smallest];
+        }
+        break;
+      }
+
+      if (smallest || distances[smallest] !== Infinity) {
+        // console.log(this.adjacentList[smallest])
+        for (const neighbor in this.adjacentList[smallest]) {
+          //find neighboring node
+          let nextNode = this.adjacentList[smallest][neighbor];
+          // calculate new distance to neiboring node
+          let candidate = distances[smallest] + nextNode.weight;
+          if (candidate < distances[nextNode.node]) {
+            //updating new smallest deistance to neighbor
+            distances[nextNode.node] = candidate;
+            //updating previous -how we got to neigbhor
+
+            previous[nextNode.node] = smallest;
+
+            //enqueue in priority queue with new priority
+            nodes.enqueue(nextNode.node, candidate);
+          }
+        }
+      }
+    }
+    // return path
+    return path.concat(smallest).reverse();
+  }
+}
+
+const djk = new weightedGraph();
+
+djk.addVertex("A");
+djk.addVertex("B");
+djk.addVertex("C");
+djk.addVertex("D");
+djk.addVertex("E");
+djk.addVertex("F");
+
+djk.addEdge("A", "B", 4);
+djk.addEdge("A", "C", 2);
+djk.addEdge("B", "E", 3);
+djk.addEdge("C", "D", 2);
+djk.addEdge("C", "F", 4);
+djk.addEdge("D", "E", 3);
+djk.addEdge("D", "F", 1);
+djk.addEdge("E", "F", 1);
+
+//console.log(djk.adjacentList['D']);
+console.log(djk.dijkstras("A", "E"));
 ```
