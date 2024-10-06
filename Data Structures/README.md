@@ -1059,7 +1059,7 @@ djk.addEdge("E", "F", 1);
 console.log(djk.dijkstras("A", "E"));
 ```
 
-## 11 Dynamic Proggramming
+## 11 Dynamic Programming
 
 ### Dynamic programming is a method for solving complex problems by breaking them down into simpler subproblems, solving each subproblem only once, and storing the solutions to subproblems to avoid redundant computation.
 
