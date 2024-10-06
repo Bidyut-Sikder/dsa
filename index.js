@@ -1,122 +1,42 @@
-//adjacent matrix
-//adjacent list
-class Graph {
-  constructor() {
-    this.adjacentList = {};
-  }
+//there are two ways of dynamic programming
 
-  addVertex(vertex) {
-    if (!this.adjacentList[vertex]) {
-      this.adjacentList[vertex] = [];
-    }
-  }
+//memoization
+//tabulation
 
-  addEdge(vertex1, vertex2) {
-    this.adjacentList[vertex2].push(vertex1);
-    this.adjacentList[vertex1].push(vertex2);
-  }
-
-  removeEdge(vertex1, vertex2) {
-    this.adjacentList[vertex1] = this.adjacentList[vertex1].filter(
-      (item) => item !== vertex2
-    );
-
-    this.adjacentList[vertex2] = this.adjacentList[vertex2].filter(
-      (item) => item !== vertex1
-    );
-  }
-
-  removeVertex(vertex) {
-    while (this.adjacentList[vertex].length) {
-      let otherVertex = this.adjacentList[vertex].pop();
-
-      this.removeEdge(vertex, otherVertex);
-    }
-    delete this.adjacentList[vertex];
-  }
-
-  //travese
-
-  depthFirstItration(vertex) {
-    let stack = [vertex];
-    let result = [];
-    let currentVertex;
-    let visited = [];
-    visited[vertex] = true;
-    while (stack.length) {
-      if (!vertex) return null;
-      currentVertex = stack.pop();
-      result.push(currentVertex);
-      this.adjacentList[currentVertex].forEach((element) => {
-        if (!visited[element]) {
-          visited[element] = true;
-          stack.push(element);
-        }
-      });
-    }
-    return result;
-  }
-
-  depthFirstRecursion(vertex) {
-    let result = [];
-    let visited = [];
-    let adjacentList = this.adjacentList;
-
-    function recursion(vertex) {
-      if (!vertex) return null;
-      visited[vertex] = true;
-      result.push(vertex);
-
-      adjacentList[vertex].forEach((element) => {
-        if (!visited[element]) {
-          return recursion(element);
-        }
-      });
-    }
-    recursion(vertex);
-    return result;
-  }
-
-  breadthFirstIteration(vertex) {
-    let queque = [vertex];
-    let result = [];
-    let visited = [];
-    let currentVertex;
-    visited[vertex] = true;
-    while (queque.length) {
-      currentVertex = queque.shift();
-      result.push(currentVertex);
-
-      this.adjacentList[currentVertex].forEach((element) => {
-        if (!visited[element]) {
-          visited[element] = true;
-          queque.push(element);
-        }
-      });
-    }
-    return result;
-  }
+function fib(n) {
+  if(n<=2)return 1
+  return fib(n-1)+fib(n-2)
 }
 
-let graph = new Graph();
+//memoization
 
-graph.addVertex("A");
-graph.addVertex("B");
-graph.addVertex("C");
-graph.addVertex("D");
-graph.addVertex("E");
-graph.addVertex("F");
+//{ 0: 0, 1: 1, 2: 1 }
+function fib(n, memo = {}) {
+  if (memo[n]) return memo[n];
 
-graph.addEdge("A", "B");
-graph.addEdge("A", "C");
-graph.addEdge("B", "D");
-graph.addEdge("C", "E");
-graph.addEdge("D", "E");
-graph.addEdge("D", "F");
-graph.addEdge("E", "F");
+  if(n<=2) return 1
 
-// console.log(graph.depthFirstItration("A"));
-//console.log(graph.depthFirstRecursion("A"));
-console.log(graph.breadthFirstIteration("A"));
+  let res = fib(n - 1, memo) + fib(n - 2, memo);
 
-// console.log(graph);
+  console.log(memo);
+  memo[n] = res;
+  return res;
+}
+
+//tabulation //bottom -up approach
+
+// function fib(n) {
+//   if (n <= 2) return 1;
+
+//   let arr = [0, 1, 1];
+
+//   for (let i = 3; i <= n; i++) {
+//     arr[i] = arr[i - 1] + arr[i - 2];
+//   }
+//   console.log(arr);
+//   return arr[n];
+// }
+
+console.log(fib(100));
+
+
